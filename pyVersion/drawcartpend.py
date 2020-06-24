@@ -23,8 +23,8 @@ def drawcartpend(gui, y, m, M, L):
     hH = 0.05*math.sqrt(M/5)  # cart half height
     mr = 0.02*math.sqrt(m)  # mass radius
 
-    x = y[0, 0]
-    theta = y[2, 0]
+    x = y[0]+0.5
+    theta = y[2] + 0.5 * math.pi
 
     cart_center_y = ground_y+wr+wr+hH
 
