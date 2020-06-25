@@ -20,7 +20,7 @@ M = 5.0  # mass of cart
 L = 2.0  # pendulum length
 g = -10.0  # gravity
 d = 1.0  # dampping term
-u = uImplus
+u = uImplus  # force to the cart
 
 
 def setCartpendVars(m_, M_, L_, g_, d_, u_):
