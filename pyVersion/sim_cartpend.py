@@ -16,12 +16,12 @@ g = -10.0  # gravity
 d = 1.0  # dampping term
 
 tspan = [0, 30]  # time for simulation
-dt = 0.1
-y0 = np.array([0, 0, -0.5*math.pi, 0.1], dtype=np.float)
+dt = 0.05
+y0 = np.array([0, 0, -0.5 * math.pi, 0.1], dtype=np.float)
 
-gui = ti.GUI('HW Mass Spring System', res=(512, 512), background_color=0xdddddd)
 
-setCartpendVars(m, M, L, g, d, 0)
+gui = ti.GUI('Sim cartpend', res=(512, 512), background_color=0xdddddd)
+
 sol = solve_ivp(cartpend, tspan, y0, t_eval=np.arange(tspan[0], tspan[1], dt))
 
 
@@ -30,5 +30,5 @@ while gui.running:
     drawcartpend(gui, sol.y[:, t_curr], m, M, L)
     gui.show()
     t_curr += 1
-    if (t_curr > sol.y.shape[1]-1):
+    if (t_curr > sol.y.shape[1] - 1):
         t_curr = 0

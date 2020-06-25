@@ -6,12 +6,21 @@ def zeroForce(t, y):
     return 0.0
 
 
+def uImplus(t, y):
+    if (10.0 <= t < 10.3):
+        return 12.0
+    elif (14.0 <= t < 14.3):
+        return -18.0
+    else:
+        return 0.0
+
+
 m = 1.0  # mass of ball
 M = 5.0  # mass of cart
 L = 2.0  # pendulum length
 g = -10.0  # gravity
 d = 1.0  # dampping term
-u = zeroForce
+u = uImplus
 
 
 def setCartpendVars(m_, M_, L_, g_, d_, u_):
@@ -47,13 +56,13 @@ def setCartpendVars(m_, M_, L_, g_, d_, u_):
 #     return dy
 
 def cartpend(t, y):
-    x_ddot = u(t, y) - m*L*y[3]*y[3] * np.cos(y[2]) + m*g*np.cos(y[2]) * np.sin(y[2])
-    x_ddot = x_ddot / (M+m-m * np.sin(y[2]) * np.sin(y[2]))
+    x_ddot = u(t, y) - m * L * y[3] * y[3] * np.cos(y[2]) + m * g * np.cos(y[2]) * np.sin(y[2])
+    x_ddot = x_ddot / (M + m - m * np.sin(y[2]) * np.sin(y[2]))
 
-    theta_ddot = -g/L * np.cos(y[2]) - 1./L * np.sin(y[2]) * x_ddot
+    theta_ddot = -g / L * np.cos(y[2]) - 1. / L * np.sin(y[2]) * x_ddot
 
-    damping_theta = -0.7*d*y[3]
-    damping_x = - d*y[1]
+    damping_theta = -0.7 * d * y[3]
+    damping_x = - d * y[1]
 
     dy = np.array([0, 0, 0, 0], dtype=np.float)
     dy[0] = y[1]
