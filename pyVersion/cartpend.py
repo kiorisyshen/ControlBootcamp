@@ -41,7 +41,6 @@ def setCartpendVars(m_, M_, L_, g_, d_, u_):
 # dy(3, 1) = y(4)
 # dy(4, 1) = (1/D)*((m+M)*m*g*L*Sy - m*L*Cy*(m*L*y(4) ^ 2*Sy - d*y(2))) - m*L*Cy*(1/D)*u + .01*randn
 
-
 # def cartpend(t, y):
 #     Sy = math.sin(y[2])
 #     Cy = math.cos(y[2])
@@ -54,6 +53,7 @@ def setCartpendVars(m_, M_, L_, g_, d_, u_):
 #     dy[3] = (1.0/D)*((m+M)*m*g*L*Sy - m*L*Cy*(m*L*y[3]*y[3]*Sy - d*y[1])) - m*L*Cy*(1.0/D)*u(t, y)
 
 #     return dy
+
 
 def cartpend(t, y):
     x_ddot = u(t, y) - m * L * y[3] * y[3] * np.cos(y[2]) + m * g * np.cos(y[2]) * np.sin(y[2])

@@ -12,7 +12,7 @@ ti.init(debug=True)
 m = 1.0  # mass of ball
 M = 5.0  # mass of cart
 L = 2.0  # pendulum length
-g = -10.0  # gravity
+g = 10.0  # gravity
 d = 1.0  # dampping term
 
 tspan = [0, 30]  # time for simulation
