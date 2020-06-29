@@ -22,10 +22,15 @@ class cartpendSystem:
         SinTheta = math.sin(y[2])
         CosTheta = math.cos(y[2])
 
-        x_ddot = u(t, y) + m * g * SinTheta * CosTheta + m * L * y[3] * y[3] * SinTheta
-        x_ddot = x_ddot / (M + m - m * CosTheta * CosTheta)
+        x_dot = y[1]
+        theta_dot = y[3]
 
-        theta_ddot = (-g * SinTheta - CosTheta * x_ddot) / L
+        # x_ddot = u(t, y) + m * g * SinTheta * CosTheta + m * L * y[3] * y[3] * SinTheta
+        # x_ddot = x_ddot / (M + m - m * CosTheta * CosTheta)
+
+        x_ddot = (L * m * SinTheta * (theta_dot)**2 - g * m * CosTheta * SinTheta + u(t, y)) / (m * SinTheta**2 + M)
+
+        theta_ddot = -(CosTheta * (x_ddot) - g * SinTheta) / L
 
         damping_theta = -0.1 * d * y[3]
         damping_x = -d * y[1]

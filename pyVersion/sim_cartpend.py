@@ -25,13 +25,13 @@ def uImplus(t, y):
 m = 1.0  # mass of ball
 M = 5.0  # mass of cart
 L = 2.0  # pendulum length
-g = -10.0  # gravity
+g = 9.8  # gravity
 d = 4.0  # dampping term
 sys = cartpendSystem(m, M, L, g, d, zeroForce)
 
 tspan = [0, 30]  # time for simulation
 dt = 0.03
-y0 = np.array([0, 0, 0.5*math.pi, 0], dtype=np.float)
+y0 = np.array([0, 0, 0.5 * math.pi, 0], dtype=np.float)
 
 gui = ti.GUI('Sim cartpend', res=(512, 512), background_color=0xdddddd)
 
