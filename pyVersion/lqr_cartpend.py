@@ -9,6 +9,7 @@ from cartpend import cartpendSystem
 import taichi as ti
 ti.init(debug=True)
 
+control.use_numpy_matrix(flag=False)
 
 m = 1.0  # mass of ball
 M = 5.0  # mass of cart
