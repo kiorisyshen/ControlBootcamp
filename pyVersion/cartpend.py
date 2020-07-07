@@ -1,5 +1,6 @@
 import math
 import numpy as np
+import control
 
 
 class cartpendSystem:
@@ -42,3 +43,29 @@ class cartpendSystem:
         dy[3] = theta_ddot + damping_theta
 
         return dy
+
+
+def cartpendSys_pyCtl(t, x, u, params):
+    # Parameter setup
+    m = params.get('m', 1.0)
+    M = params.get('M', 5.0)
+    L = params.get('L', 2.0)
+    g = params.get('g', 9.8)
+    d = params.get('d', 4.0)
+
+    SinTheta = math.sin(x[2])
+    CosTheta = math.cos(x[2])
+
+    x_dot = x[1]
+    theta_dot = x[3]
+
+    F_cart = u
+
+    x_ddot = (L * m * SinTheta * (theta_dot)**2 - g * m * CosTheta * SinTheta + F_cart) / (m * SinTheta**2 + M)
+
+    theta_ddot = -(CosTheta * (x_ddot) - g * SinTheta) / L
+
+    damping_theta = -0.1 * d * x[3]
+    damping_x = -d * x[1]
+
+    return [x[1], x_ddot + damping_x, x[3], theta_ddot + damping_theta]
