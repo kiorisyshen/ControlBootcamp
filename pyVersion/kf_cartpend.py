@@ -16,7 +16,7 @@ control.use_numpy_matrix(flag=False)
 m = 1.0  # mass of ball
 M = 5.0  # mass of cart
 L = 2.0  # pendulum length
-g = -9.8  # gravity  # simulate in stable state
+g = -9.8  # gravity  # simulate in stable state (Inverse the gravity because our system is linearized at up position)
 d = 4.0  # dampping term
 
 #############################
@@ -34,10 +34,10 @@ C = np.array([1, 0, 0, 0], dtype=np.float)  # only observable if x measured... b
 
 D = np.zeros((1, B.shape[1]), dtype=np.float)
 
-Vd = 0.1*np.eye(4)  # disturbance covariance
+Vd = 0.1 * np.eye(4)  # disturbance covariance
 Vn = 0.2            # noise covariance
 
-BF = np.concatenate([B, Vd, 0.0*B], axis=1)  # augment inputs to include disturbance and noise
+BF = np.concatenate([B, Vd, 0.0 * B], axis=1)  # augment inputs to include disturbance and noise
 
 
 sysC = control.StateSpace(A, BF, C, np.array([0, 0, 0, 0, 0, Vn]))  # build big state space system... with single output
@@ -48,7 +48,7 @@ sysFullOutput = control.StateSpace(A, BF, np.eye(4), np.zeros(BF.shape))  # syst
 Kf, _, _ = control.lqr(np.transpose(A), np.expand_dims(C, axis=1), Vd, Vn)   # alternatively, possible to design using "LQR" code
 Kf = np.transpose(Kf)
 
-sysKF = control.StateSpace(A-Kf*C, np.concatenate([B, Kf], axis=1), np.eye(4), 0*np.concatenate([B, Kf], axis=1))  # Kalman filter estimator
+sysKF = control.StateSpace(A - Kf * C, np.concatenate([B, Kf], axis=1), np.eye(4), 0 * np.concatenate([B, Kf], axis=1))  # Kalman filter estimator
 
 # Estimate linearized system in "down" position(Gantry crane)
 dt = 0.01
