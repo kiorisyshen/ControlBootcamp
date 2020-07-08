@@ -69,34 +69,3 @@ def cartpendSys_pyCtl(t, x, u, params):
     damping_x = -d * x[1]
 
     return [x[1], x_ddot + damping_x, x[3], theta_ddot + damping_theta]
-
-
-def cartpendSysNoise_pyCtl(t, x, u, params):
-    # Parameter setup
-    m = params.get('m', 1.0)
-    M = params.get('M', 5.0)
-    L = params.get('L', 2.0)
-    g = params.get('g', 9.8)
-    d = params.get('d', 4.0)
-    Vd = params.get('Vd')
-
-    SinTheta = math.sin(x[2])
-    CosTheta = math.cos(x[2])
-
-    x_dot = x[1]
-    theta_dot = x[3]
-
-    F_cart = u
-
-    x_ddot = (L * m * SinTheta * (theta_dot)**2 - g * m * CosTheta * SinTheta + F_cart) / (m * SinTheta**2 + M)
-
-    theta_ddot = -(CosTheta * (x_ddot) - g * SinTheta) / L
-
-    damping_theta = -0.1 * d * x[3]
-    damping_x = -d * x[1]
-
-    nDIST = np.random.multivariate_normal(np.zeros(4), Vd)
-    distD = Vd @ nDIST
-
-    return [x[1] + distD[0], x_ddot + damping_x + distD[1], x[3] + distD[2], theta_ddot + damping_theta + distD[3]]
-    # return [x[1], x_ddot + damping_x, x[3], theta_ddot + damping_theta]
