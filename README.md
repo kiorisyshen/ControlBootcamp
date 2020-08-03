@@ -14,7 +14,7 @@ Maxima
 
 ## Math part
 ### a. Cart-pend system definition
-![definition](results/definition.png)
+![definition](results/definition.PNG)
 
 ### b. Dynamics equations
 Use wxmaxima for lagrange euqation computation. Please refer to pyVersion/cartpend.wxmx
