@@ -24,7 +24,7 @@ sysParams = {
 }
 
 tspan = [0, 10]  # time for simulation
-dt = 0.01
+dt = 0.04
 yInit = [0.0, 0.0, 0.0, 0.1]  # initial state
 xeq = [0.3, 0.0, 0.0, 0.0]  # final stable state
 
