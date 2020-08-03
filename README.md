@@ -40,7 +40,7 @@ python poleplace_cartpend.py
     python linearize_cartpend.py
     ```
 ### 3. LQR control
-Here I add a periodical force to the cart to make the control process have more visual impact.
+Here I add a periodical force to the cart to for more visual impact.
 ```shell
 python lqr_cartpend.py
 ```
